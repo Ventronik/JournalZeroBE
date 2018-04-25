@@ -49,7 +49,7 @@ app.use(function(req, res, next){
 
 app.use(function(err, req, res, next){
   const errorMessage = {}
-
+  console.log(err)
   if(process.env.NODE_ENV !== 'production' && err.stack)
     errorMessage.stack = err.stack
 

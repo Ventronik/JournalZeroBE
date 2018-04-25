@@ -5,10 +5,10 @@ const bcrypt = require('bcrypt-as-promised')
 // Basic CRUD Methods
 //////////////////////////////////////////////////////////////////////////////
 
-function getOneByUserName(username){
+function getOneByUserName(user_name){
   return (
     db('users')
-    .where({ username })
+    .where({ user_name })
     .first()
   )
 }
