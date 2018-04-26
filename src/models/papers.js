@@ -11,7 +11,6 @@ function getAllPapers() {
 
 function getAllPublished() {
   return db('papers')
-    // .select('paper_status as')
     .join('paper_status', 'paper_status.paper_id', 'papers.id')
     .join('status', 'status.id', 'paper_status.status_id')
     .where('status.status', 'Published')

@@ -40,7 +40,7 @@ function create(username, password){
     // 3. Insert record into database
     return (
       db('users')
-      .insert({ username, password: hashedPassword })
+      .insert({ user_name: username, password: hashedPassword })
       .returning('*')
     )
   })
@@ -52,7 +52,38 @@ function create(username, password){
   })
 }
 
+function getAllUserPapers(id) {
+  return db('papers')
+    .select('papers.title', 'papers.abstract', 'papers.field', 'papers.url', 'papers.authors')
+    .join('users', 'users.id', 'papers.user_id')
+    .where('users.id', id)
+}
+
+function postPapers(data, id) {
+  const abstract = data.abstract
+  const authors = data.authors
+  const field = data.field
+  const url = data.url
+  const user_id = id
+  const title = data.title
+
+  return (
+    db('papers')
+      .insert({ abstract, authors, field, url, title, user_id })
+    .returning('*')
+    .then(function([ data ]){
+      return db('paper_status')
+                .insert( {paper_id: data.id, status_id:1 }) //all papers are created with the status pending(1)
+      .returning('*')
+    }
+
+    )
+  )
+}
+
 module.exports = {
   getOneByUserName,
-  create
+  create,
+  getAllUserPapers,
+  postPapers
 }

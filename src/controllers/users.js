@@ -1,4 +1,5 @@
 const userModel = require('../models/users')
+const authController = require('./auth.js')
 
 //////////////////////////////////////////////////////////////////////////////
 // Basic CRUD Methods
@@ -21,10 +22,29 @@ function create(req, res, next){
   .catch(next)
 }
 
+function getAllUserPapers(req, res, next) {
+
+  userModel.getAllUserPapers(req.params.id)
+  .then(function(data){
+    return res.status(200).send({ data })
+  })
+  .catch(next)
+}
+
+function postPapers (req, res, next){
+  userModel.postPapers(req.body, req.params.id)
+  .then(function(data){
+    return res.status(201).send({ data })
+  })
+  .catch(next)
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Quality of Life functions
 //////////////////////////////////////////////////////////////////////////////
 
 module.exports = {
-  create
+  create,
+  getAllUserPapers,
+  postPapers
 }
