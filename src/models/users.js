@@ -54,8 +54,9 @@ function create(username, password){
 
 function getAllUserPapers(id) {
   return db('papers')
-    .select('papers.title', 'papers.abstract', 'papers.field', 'papers.url', 'papers.authors')
+    .select('papers.title', 'papers.abstract', 'papers.field', 'papers.url', 'papers.authors', 'paper_status.updated_at')
     .join('users', 'users.id', 'papers.user_id')
+    .join('paper_status', 'paper_status.paper_id', 'papers.id')
     .where('users.id', id)
 }
 
