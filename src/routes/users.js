@@ -12,7 +12,10 @@ router.post('/', userController.create)
 router.get('/:id/papers', authController.isAuthenticated, userController.getAllUserPapers)
 
 router.post('/:id/papers', authController.isAuthenticated, userController.postPapers)
-// router.post('/:id/papers', userController.postPapers)
+
+
+router.post('/:id/papers/:paper_id', userController.paperStatusChange)
+
 
 
 

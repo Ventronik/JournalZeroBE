@@ -81,9 +81,18 @@ function postPapers(data, id) {
   )
 }
 
+function paperStatusChange(status_id, paper_id) {
+  return (
+  db('paper_status')
+    .insert({status_id, paper_id})
+  .returning('*')
+  )
+}
+
 module.exports = {
   getOneByUserName,
   create,
   getAllUserPapers,
-  postPapers
+  postPapers,
+  paperStatusChange
 }
