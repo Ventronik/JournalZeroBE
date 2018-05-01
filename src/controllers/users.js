@@ -34,7 +34,7 @@ function getAllUserPapers(req, res, next) {
 function postPapers (req, res, next){
   userModel.postPapers(req.body, req.params.id)
     .then(function(data){
-      console.log(data)
+      console.log('hi dustin', data)
     return res.status(201).send({ data })
   })
   .catch(next)
