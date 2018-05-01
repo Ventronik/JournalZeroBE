@@ -32,15 +32,16 @@ function getAllUserPapers(req, res, next) {
 }
 
 function postPapers (req, res, next){
-  userModel.postPapers(req.body.status, req.params.id)
+  userModel.postPapers(req.body, req.params.id)
     .then(function(data){
+      console.log(data)
     return res.status(201).send({ data })
   })
   .catch(next)
 }
 
 function paperStatusChange(req,res, next){
-  userModel.paperStatusChange(req.body.status, req.params.paper_id)
+  userModel.paperStatusChange(req.body.status_id, req.params.paper_id)
   .then(function(data){
     return res.status(201).send({ data })
   })

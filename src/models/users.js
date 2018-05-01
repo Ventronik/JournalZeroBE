@@ -53,11 +53,32 @@ function create(username, password){
 }
 
 function getAllUserPapers(id) {
-  return db('papers')
-    .select('papers.title', 'papers.abstract', 'papers.field', 'papers.url', 'papers.authors', 'paper_status.updated_at')
-    .join('users', 'users.id', 'papers.user_id')
-    .join('paper_status', 'paper_status.paper_id', 'papers.id')
-    .where('users.id', id)
+  return (
+    db('papers')
+      .select(
+        'papers.id',
+        'papers.title',
+        'papers.abstract',
+        'papers.field',
+        'papers.url',
+        'papers.authors',
+      )
+      .join('users', 'users.id', 'papers.user_id')
+      .where('users.id', id)
+    .then((papers)=> {
+      return Promise.all(papers.map((paper)=>{
+        return db('paper_status')
+          .join('status', 'status.id', 'paper_status.status_id')
+          .orderBy('paper_status.updated_at', 'desc').first()
+          .where('paper_status.paper_id', paper.id)
+          .then(status => {
+              paper.udpated_at = status.updated_at
+              paper.status = status.status
+              return paper
+          })
+      }))
+    })
+  )
 }
 
 function postPapers(data, id) {
@@ -77,7 +98,6 @@ function postPapers(data, id) {
                 .insert( {paper_id: data.id, status_id:1 }) //all papers are created with the status pending(1)
       .returning('*')
     }
-
     )
   )
 }

@@ -13,7 +13,6 @@ router.get('/:id/papers', authController.isAuthenticated, userController.getAllU
 
 router.post('/:id/papers', authController.isAuthenticated, userController.postPapers)
 
-
 router.post('/:id/papers/:paper_id', userController.paperStatusChange)
 
 
