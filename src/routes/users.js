@@ -15,6 +15,8 @@ router.post('/:id/papers', authController.isAuthenticated, userController.postPa
 
 router.post('/:id/papers/:paper_id', userController.paperStatusChange)
 
+router.delete('/:id/papers/:paper_id', userController.paperDelete)
+
 
 
 

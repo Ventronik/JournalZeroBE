@@ -48,6 +48,14 @@ function paperStatusChange(req,res, next){
   .catch(next)
 }
 
+function paperDelete(req, res, next) {
+  userModel.paperDelete(req.params.paper_id, req.params.id)
+  .then (function(data){
+    return res.status(204).send({ data })
+  })
+  .catch(next)
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Quality of Life functions
 //////////////////////////////////////////////////////////////////////////////
@@ -56,5 +64,6 @@ module.exports = {
   create,
   getAllUserPapers,
   postPapers,
-  paperStatusChange
+  paperStatusChange,
+  paperDelete
 }

@@ -110,10 +110,42 @@ function paperStatusChange(status_id, paper_id) {
   )
 }
 
+function paperDelete(paper_id, id) {
+  return(
+    db('papers')
+    .select('papers.user_id')
+    .where('id', paper_id)
+    .then(function(result){
+      let [{ user_id }] = result
+      console.log(user_id, parseInt(id))
+      if(user_id !== parseInt(id)) {
+        throw {status:403, message: 'Missing permission to access paper'}
+      }
+    })
+    .then(function(){
+    db('comments')
+      .del()
+      .where('paper_id', paper_id)
+    .then(function(){
+      return db('paper_status')
+      .del()
+      .where('paper_id', paper_id)
+    })
+    .then(function(){
+      return db('papers')
+      .del()
+      .where('id', paper_id)
+      .returning('*')
+    })
+  })
+  )
+}
+
 module.exports = {
   getOneByUserName,
   create,
   getAllUserPapers,
   postPapers,
-  paperStatusChange
+  paperStatusChange,
+  paperDelete
 }
