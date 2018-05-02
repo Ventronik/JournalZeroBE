@@ -68,4 +68,4 @@ Journal Zero was created in 1 week.
 ![What the user sees](screenshots/User signin landing page.png)
 
 ### Publishing a paper:
-![How to change the paper statu](screenshots/updating a paper.png)
+![How to change the paper status](screenshots/updating a paper.png)
