@@ -62,10 +62,10 @@ Journal Zero was created in 1 week.
 ![Splash Page](screenshots/LandingPage.png)
 
 ### Published paper date:
-![Public Published papers](screenshots/Published Paper Modal.png)
+![Public Published papers](screenshots/PublishedPaperModal.png)
 
 ### Logged In:
-![What the user sees](screenshots/User signin landing page.png)
+![What the user sees](screenshots/UserSigninLandingPage.png)
 
 ### Publishing a paper:
-![How to change the paper status](screenshots/updating a paper.png)
+![How to change the paper status](screenshots/updatingPaper.png)
