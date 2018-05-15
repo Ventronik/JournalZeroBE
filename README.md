@@ -13,6 +13,11 @@ Journal Zero was created in 1 week.
 #### Frontend GitHub: https://github.com/Ventronik/JournalZeroFE
 #### Backend GitHub: https://github.com/Ventronik/JournalZeroBE
 
+## To deploy locally
+- Fork and clone this repository
+- npm install
+- npm start
+
 ## Features
 - Send and retrieve authenticated data from server using REST API
 - Login via jwt and bcrypt
