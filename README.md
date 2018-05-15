@@ -18,6 +18,10 @@ Journal Zero was created in 1 week.
 - npm install
 - npm start
 
+## To set up the database
+- Npm run knex migrate:latest
+- Npm run knex seed:run
+
 ## Features
 - Send and retrieve authenticated data from server using REST API
 - Login via jwt and bcrypt
