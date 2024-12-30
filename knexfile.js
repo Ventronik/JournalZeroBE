@@ -3,8 +3,14 @@ const path = require('path')
 module.exports = {
 
   development: {
-    client: 'postgresql',
-    connection: 'postgresql://localhost/journal_zero',
+    client: 'pg',
+    connection: {
+      host: '127.0.0.1',
+      database: 'journal-zero',
+      user: 'postgres',
+      password: '',
+      port: 5433
+    },
     migrations: {
       directory: path.join(__dirname, 'db', 'migrations')
     },
