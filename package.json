@@ -9,13 +9,14 @@
     "dev": "nodemon ./src/app.js",
     "knex": "knex",
     "latest": "knex migrate:latest",
-    "rollback": "knex migrate:rollback"
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt-as-promised": "^1.1.0",
-    "body-parser": "^1.18.2",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.1",
